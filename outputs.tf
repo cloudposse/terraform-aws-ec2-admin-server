@@ -1,13 +1,13 @@
 output "public_ip" {
-  value = "${aws_instance.admin_tier.public_ip}"
+  value = "${module.instance.public_ip}"
 }
 
 output "public_hostname" {
-  value = "${aws_instance.admin_tier.public_hostname}"
+  value = "${module.instance.public_hostname}"
 }
 
 output "id" {
-  value = "${module.label.id}"
+  value = "${module.instance.id}"
 }
 
 output "ssh_key_pair" {
@@ -19,5 +19,6 @@ output "security_group_id" {
 }
 
 output "role" {
-  value = "${aws_instance.admin_tier.role}"
+  value = "${module.instance.role}"
 }
+

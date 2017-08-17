@@ -6,7 +6,11 @@ variable "github_organization" {}
 
 variable "github_team" {}
 
-variable "playbook" {}
+variable "ansible_playbook" {}
+
+variable "ansible_arguments" {
+  type = "list"
+}
 
 variable "associate_public_ip_address" {
   default = "true"
@@ -18,25 +22,19 @@ variable "instance_type" {
 
 variable "vpc_id" {}
 
-#variable "security_groups" {
-#  type = "list"
-#}
-
-#variable "subnets" {
-#  type = "list"
-#}
-
-variable "namespace" {
-  default = "global"
+variable "security_groups" {
+  default = []
 }
 
-variable "stage" {
-  default = "default"
+variable "subnets" {
+  type = "list"
 }
 
-variable "name" {
-  default = "admin"
-}
+variable "namespace" {}
+
+variable "stage" {}
+
+variable "name" {}
 
 variable "ec2_ami" {
   default = "ami-cd0f5cb6"
