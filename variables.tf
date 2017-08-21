@@ -41,5 +41,5 @@ variable "ec2_ami" {
 }
 
 variable "zone_id" {
-  default = "Z1ZC1YVKQVHQ9T"
+  default = ""
 }
