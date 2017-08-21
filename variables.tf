@@ -39,3 +39,7 @@ variable "name" {}
 variable "ec2_ami" {
   default = "ami-cd0f5cb6"
 }
+
+variable "zone_id" {
+  default = "Z1ZC1YVKQVHQ9T"
+}
