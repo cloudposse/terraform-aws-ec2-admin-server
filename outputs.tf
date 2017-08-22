@@ -18,6 +18,6 @@ output "role" {
   value = "${module.instance.role}"
 }
 
-output "domain_name" {
+output "fqdn" {
   value = "${module.dns.hostname}"
 }
