@@ -64,15 +64,6 @@ module "instance" {
   ansible_arguments   = "${var.ansible_arguments}"
 }
 
-module "ap_domain" {
-  source               = "git::https://github.com/cloudposse/tf_domain.git?ref=tags/0.2.1"
-  namespace            = "${var.namespace}"
-  stage                = "${var.stage}"
-  name                 = ""
-  parent_zone_name     = "autopay.cc"
-  zone_name            = "$${stage}.$${parent_zone_name}"
-}
-
 module "dns" {
   source    = "git::https://github.com/cloudposse/tf_hostname.git?ref=tags/0.1.0"
   namespace = "${var.namespace}"
