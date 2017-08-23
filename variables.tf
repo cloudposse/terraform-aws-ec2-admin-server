@@ -40,3 +40,7 @@ variable "ec2_ami" {
   default = "ami-cd0f5cb6"
   description = "Ubuntu Server 16.04 LTS (HVM)"
 }
+
+variable "zone_id" {
+  default = ""
+}

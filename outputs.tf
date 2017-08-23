@@ -2,10 +2,6 @@ output "public_ip" {
   value = "${module.instance.public_ip}"
 }
 
-output "public_hostname" {
-  value = "${module.instance.public_hostname}"
-}
-
 output "id" {
   value = "${module.instance.id}"
 }
@@ -22,3 +18,6 @@ output "role" {
   value = "${module.instance.role}"
 }
 
+output "fqdn" {
+  value = "${module.dns.hostname}"
+}

@@ -63,3 +63,14 @@ module "instance" {
   subnets             = "${var.subnets}"
   ansible_arguments   = "${var.ansible_arguments}"
 }
+
+module "dns" {
+  source    = "git::https://github.com/cloudposse/tf_hostname.git?ref=tags/0.1.0"
+  namespace = "${var.namespace}"
+  name      = "${var.name}"
+  stage     = "${var.stage}"
+  zone_id   = "${module.ap_domain.zone_id}"
+  ttl       = 60
+  records   = ["${module.instance.public_hostname}"]
+}
+
