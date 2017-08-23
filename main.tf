@@ -69,7 +69,7 @@ module "dns" {
   namespace = "${var.namespace}"
   name      = "${var.name}"
   stage     = "${var.stage}"
-  zone_id   = "${module.ap_domain.zone_id}"
+  zone_id   = "${var.zone_id}"
   ttl       = 60
   records   = ["${module.instance.public_hostname}"]
 }
