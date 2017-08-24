@@ -30,15 +30,13 @@ module "admin_tier" {
 
 ```
 
-This will create a `id`, `fqdn`, `security_group_id`, `role` and `public_ip`.
-
 ### Module `tf_domain`
 
 Module `tf_admin` requires another module to be used additionally - `tf_domain`
 
 `tf_admin` uses `tf_hostname` to create a DNS record for created host. `tf_hostname` module needs `zone_id` parameter as an input, and this parameter actually is an output from `tf_domain`
 
-That is why `tf_domain` should be implemented in `root` module when we need `tf_admin`
+That is why `tf_domain` should be implemented in `root` TF manifest when we need `tf_admin`
 
 
 ### This module depends on the next modules:
@@ -78,15 +76,15 @@ resource "aws_ami_from_instance" "example" {
 | `security_groups`            | []             | List of Security Group IDs allowed to connect to creating instance        | Yes |
 | `subnets`                    | []             | List of VPC Subnet IDs creating instance launched in                      | Yes |
 | `zone_id`                    | ``             | ID of the domain zone to use - is a result of tf_domain output            | Yes |
-| `associate_public_ip_address`| `true`         | Define if the `public_ip` will be created for the instance                | No  |
+| `associate_public_ip_address`| `true`         | Associate a public ip address with the creating instance. Boolean value   | No  |
 
 ## Outputs
 
 | Name                | Decription                                                        |
 |:-------------------:|:-----------------------------------------------------------------:|
 | `id`                | Disambiguated ID                                                  |
-| `fqdn`              | Normalized name                                                   |
-| `public_ip`         | Normalized namespace                                              |
+| `fqdn`              | DNS name (Fully Qualified Domain Name) of creating instance       |
+| `public_ip`         | IPv4 Public IP                                                    |
 | `ssh_key_pair`      | Name of used AWS SSH key                                          |
 | `security_group_id` | ID on the new AWS Security Group associated with creating instance|
 | `role`              | Name of AWS IAM Role associated with creating instance            |
