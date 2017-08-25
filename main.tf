@@ -53,11 +53,9 @@ module "instance" {
   github_organization = "${var.github_organization}"
   github_team         = "${var.github_team}"
   instance_type       = "${var.instance_type}"
-
   security_groups = [
     "${compact(concat(list(aws_security_group.default.id), var.security_groups))}",
   ]
-
   namespace         = "${var.namespace}"
   name              = "${var.name}"
   stage             = "${var.stage}"
