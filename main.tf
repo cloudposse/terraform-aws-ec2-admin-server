@@ -47,6 +47,12 @@ resource "aws_security_group" "default" {
 # Using tf_instance module
 module "instance" {
   source              = "git::https://github.com/cloudposse/tf_instance.git?ref=tags/0.2.0"
+  namespace           = "${var.namespace}"
+  name                = "${var.name}"
+  stage               = "${var.stage}"
+  vpc_id              = "${var.vpc_id}"
+  subnets             = "${var.subnets}"
+  ansible_arguments   = "${var.ansible_arguments}"
   ansible_playbook    = "${var.ansible_playbook}"
   ssh_key_pair        = "${var.ssh_key_pair}"
   github_api_token    = "${var.github_api_token}"
@@ -57,13 +63,6 @@ module "instance" {
   security_groups = [
     "${compact(concat(list(aws_security_group.default.id), var.security_groups))}",
   ]
-
-  namespace         = "${var.namespace}"
-  name              = "${var.name}"
-  stage             = "${var.stage}"
-  vpc_id            = "${var.vpc_id}"
-  subnets           = "${var.subnets}"
-  ansible_arguments = "${var.ansible_arguments}"
 }
 
 module "dns" {
