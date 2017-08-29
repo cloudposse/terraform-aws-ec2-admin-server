@@ -36,7 +36,7 @@ This module depends on these modules:
 * [tf_github_authorized_keys](https://github.com/cloudposse/tf_github_authorized_keys)
 * [tf_ansible](https://github.com/cloudposse/tf_ansible)
 * [tf_hostname](https://github.com/cloudposse/tf_hostname)
-* [tf_domain](https://github.com/cloudposse/tf_domain) (not directly, but tf_hostname need child zone_id)
+* [tf_domain](https://github.com/cloudposse/tf_domain) (not directly, but `tf_hostname` need child `zone_id`)
 
 It is necessary to run `terraform get` to download those modules.
 
