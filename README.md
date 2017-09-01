@@ -32,11 +32,11 @@ module "admin_tier" {
 
 ### Module `tf_domain`
 
-Module `tf_admin` requires another module to be used additionally - `tf_domain`
+Module `tf_admin` requires another module to be used additionally - `tf_domain`.
 
-`tf_admin` uses `tf_hostname` to create a DNS record for created host. `tf_hostname` module needs `zone_id` parameter as an input, and this parameter actually is an output from `tf_domain`
+`tf_admin` uses `tf_hostname` to create a DNS record for created host. `tf_hostname` module needs `zone_id` parameter as an input, and this parameter actually is an output from `tf_domain`.
 
-That is why `tf_domain` should be implemented in `root` TF manifest when we need `tf_admin`
+That is why `tf_domain` should be implemented in `root` TF manifest when we need `tf_admin`.
 
 
 ### This module depends on the next modules:
@@ -45,7 +45,7 @@ That is why `tf_domain` should be implemented in `root` TF manifest when we need
 * [tf_github_authorized_keys](https://github.com/cloudposse/tf_github_authorized_keys)
 * [tf_ansible](https://github.com/cloudposse/tf_ansible)
 * [tf_hostname](https://github.com/cloudposse/tf_hostname)
-* [tf_domain](https://github.com/cloudposse/tf_domain)
+* [tf_domain](https://github.com/cloudposse/tf_domain) (not directly, but `tf_hostname` need child `zone_id`)
 
 It is necessary to run `terraform get` to download those modules.
 
