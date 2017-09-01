@@ -9,7 +9,7 @@ module "label" {
 }
 
 resource "aws_security_group" "default" {
-  name        = "${module.label.id}"
+  name        = "${module.label.id}-ssh"
   vpc_id      = "${var.vpc_id}"
   description = "Instance default security group (only egress access is allowed)"
 
