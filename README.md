@@ -81,7 +81,7 @@ resource "aws_ami_from_instance" "example" {
 ## Outputs
 
 | Name                | Decription                                                        |
-|:-------------------:|:-----------------------------------------------------------------:|
+|:--------------------|:------------------------------------------------------------------|
 | `id`                | Disambiguated ID                                                  |
 | `fqdn`              | DNS name (Fully Qualified Domain Name) of creating instance       |
 | `public_ip`         | IPv4 Public IP                                                    |
