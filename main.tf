@@ -11,7 +11,7 @@ module "label" {
 resource "aws_security_group" "default" {
   name        = "${module.label.id}-ssh"
   vpc_id      = "${var.vpc_id}"
-  description = "Allowed SSH access from any source"
+  description = "Allow SSH access from any source"
 
   tags {
     Name      = "${module.label.id}"
