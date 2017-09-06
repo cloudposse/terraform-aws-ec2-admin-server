@@ -8,9 +8,9 @@ Note: add `${var.ssh_key_pair}` private key to the `ssh agent`.
 
 Include this repository as a module in your existing terraform code:
 
-```
+```terraform
 module "admin_tier" {
-  source                      = "git::https://github.com/cloudposse/tf_admin.git?ref=tags/0.2.0"
+  source                      = "git::https://github.com/cloudposse/tf_admin.git?ref=master"
   ansible_playbook            = "${var.ansible_playbook}"
   ansible_arguments           = "${var.ansible_arguments}"
   ssh_key_pair                = "${var.ssh_key_pair}"
@@ -24,24 +24,33 @@ module "admin_tier" {
   stage                       = "${var.stage}"
   subnets                     = ["${var.subnets}"]
   zone_id                     = "${module.tf_domain.zone_id}"
+  security_groups             = ["${var.security_groups}"]
+  associate_public_ip_address = "${var.associate_public_ip_address}"
 }
 
 ```
 
-This will create a `id`, `fqdn`, `security_group_id`, `role` and `public_ip`.
+### Module `tf_domain`
 
-This module depends on these modules:
+Module `tf_admin` requires another module to be used additionally - `tf_domain`.
+
+`tf_admin` uses `tf_hostname` to create a DNS record for created host. `tf_hostname` module needs `zone_id` parameter as an input, and this parameter actually is an output from `tf_domain`.
+
+That is why `tf_domain` should be implemented in `root` TF manifest when we need `tf_admin`.
+
+
+### This module depends on the next modules:
 
 * [tf_label](https://github.com/cloudposse/tf_label)
 * [tf_github_authorized_keys](https://github.com/cloudposse/tf_github_authorized_keys)
 * [tf_ansible](https://github.com/cloudposse/tf_ansible)
 * [tf_hostname](https://github.com/cloudposse/tf_hostname)
-* [tf_domain](https://github.com/cloudposse/tf_domain) (not directly, but tf_hostname need child zone_id)
+* [tf_domain](https://github.com/cloudposse/tf_domain) (not directly, but `tf_hostname` need child `zone_id`)
 
 It is necessary to run `terraform get` to download those modules.
 
 Now reference the label when creating an instance (for example):
-```
+```terraform
 resource "aws_ami_from_instance" "example" {
   name               = "terraform-example"
   source_instance_id = "${module.admin_tier.id}"
@@ -50,34 +59,35 @@ resource "aws_ami_from_instance" "example" {
 
 ## Variables
 
-|  Name                        |  Default       |  Description                                             | Required             |
-|:----------------------------:|:--------------:|:--------------------------------------------------------:|:--------------------:|
-| `namespace`                  | `global`       | Namespace (e.g. `cp` or `cloudposse`) - required for `tf_label` module    | Yes |
-| `stage`                      | `default`      | Stage (e.g. `prod`, `dev`, `staging` - required for `tf_label` module     | Yes |
-| `name`                       | `admin`        | Name  (e.g. `bastion` or `db`) - required for `tf_label` module           | Yes |
-| `ec2_ami`                    | `ami-cd0f5cb6` | By default it is an AMI provided by Amazon with Ubuntu 16.04              | No  |
-| `ssh_key_pair`               | ``             | SSH key pair to be provisioned on instance                                | Yes |
-| `github_api_token`           | ``             | GitHub API token                                                          | Yes |
-| `github_organization`        | ``             | GitHub organization name                                                  | Yes |
-| `github_team`                | ``             | GitHub team                                                               | Yes |
-| `ansible_playbook`           | ``             | Path to the playbook - required for `tf_ansible` (e.g. `./admin_tier.yml`)| Yes |
-| `ansible_arguments`          | []             | List of ansible arguments (e.g. `["--user=ubuntu"]`)                      | No  |
-| `instance_type`              | `t2.micro`     | The type of the creating instance (e.g. `t2.micro`)                       | No  |
-| `vpc_id`                     | ``             | The id of the VPC that the creating instance security group belongs to    | Yes |
-| `security_groups`            | []             | List of Security Group IDs allowed to connect to creating instance        | Yes |
-| `subnets`                    | []             | List of VPC Subnet IDs creating instance launched in                      | Yes |
-| `zone_id`                    | ``             | ID of the domain zone to use - is a result of tf_domain output            | Yes |
+|  Name                        |  Default       |  Description                                                              | Required|
+|:-----------------------------|:--------------:|:--------------------------------------------------------------------------|:-------:|
+| `namespace`                  | `global`       | Namespace (e.g. `cp` or `cloudposse`) - required for `tf_label` module    | Yes     |
+| `stage`                      | `default`      | Stage (e.g. `prod`, `dev`, `staging` - required for `tf_label` module     | Yes     |
+| `name`                       | `admin`        | Name  (e.g. `bastion` or `db`) - required for `tf_label` module           | Yes     |
+| `ec2_ami`                    | `ami-cd0f5cb6` | By default it is an AMI provided by Amazon with Ubuntu 16.04              | No      |
+| `ssh_key_pair`               | ``             | SSH key pair to be provisioned on instance                                | Yes     |
+| `github_api_token`           | ``             | GitHub API token                                                          | Yes     |
+| `github_organization`        | ``             | GitHub organization name                                                  | Yes     |
+| `github_team`                | ``             | GitHub team                                                               | Yes     |
+| `ansible_playbook`           | ``             | Path to the playbook - required for `tf_ansible` (e.g. `./admin_tier.yml`)| Yes     |
+| `ansible_arguments`          | []             | List of ansible arguments (e.g. `["--user=ubuntu"]`)                      | No      |
+| `instance_type`              | `t2.micro`     | The type of the creating instance (e.g. `t2.micro`)                       | No      |
+| `vpc_id`                     | ``             | The id of the VPC that the creating instance security group belongs to    | Yes     |
+| `security_groups`            | []             | List of Security Group IDs allowed to connect to creating instance        | Yes     |
+| `subnets`                    | []             | List of VPC Subnet IDs creating instance launched in                      | Yes     |
+| `zone_id`                    | ``             | ID of the domain zone to use - is a result of tf_domain output            | Yes     |
+| `associate_public_ip_address`| `true`         | Associate a public ip address with the creating instance. Boolean value   | No      |
 
 ## Outputs
 
-| Name                | Decription              |
-|:-------------------:|:-----------------------:|
-| `id`                | Disambiguated ID        |
-| `fqdn`              | Normalized name         |
-| `public_ip`         | Normalized namespace    |
-| `ssh_key_pair`      | Name of used AWS SSH key|
+| Name                | Decription                                                        |
+|:--------------------|:------------------------------------------------------------------|
+| `id`                | Disambiguated ID                                                  |
+| `fqdn`              | DNS name (Fully Qualified Domain Name) of creating instance       |
+| `public_ip`         | IPv4 Public IP                                                    |
+| `ssh_key_pair`      | Name of used AWS SSH key                                          |
 | `security_group_id` | ID on the new AWS Security Group associated with creating instance|
-| `role`              | Name of AWS IAM Role associated with creating instance|
+| `role`              | Name of AWS IAM Role associated with creating instance            |
 
 
 ## References
