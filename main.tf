@@ -20,7 +20,7 @@ resource "aws_security_group" "default" {
   }
 
   ingress {
-    protocol  = "ssh"
+    protocol  = "tcp"
     from_port = 0
     to_port   = 22
 
