@@ -59,6 +59,7 @@ module "instance" {
   github_organization = "${var.github_organization}"
   github_team         = "${var.github_team}"
   instance_type       = "${var.instance_type}"
+  ansible_envs        = "${var.ansible_envs}"
 
   security_groups = [
     "${compact(concat(list(aws_security_group.default.id), var.security_groups))}",

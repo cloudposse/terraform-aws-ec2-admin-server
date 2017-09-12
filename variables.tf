@@ -12,6 +12,10 @@ variable "ansible_arguments" {
   type = "list"
 }
 
+variable "ansible_envs" {
+  type = "list"
+}
+
 variable "associate_public_ip_address" {
   default = "true"
 }
