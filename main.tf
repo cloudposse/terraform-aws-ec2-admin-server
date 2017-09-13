@@ -46,7 +46,7 @@ resource "aws_security_group" "default" {
 
 # Using tf_instance module
 module "instance" {
-  source              = "git::https://github.com/cloudposse/tf_instance.git?ref=tags/0.3.0"
+  source              = "git::https://github.com/cloudposse/tf_instance.git?ref=tags/0.3.4"
   namespace           = "${var.namespace}"
   name                = "${var.name}"
   stage               = "${var.stage}"
@@ -54,6 +54,7 @@ module "instance" {
   subnets             = "${var.subnets}"
   ansible_arguments   = "${var.ansible_arguments}"
   ansible_playbook    = "${var.ansible_playbook}"
+  ansible_envs        = "${var.ansible_envs}"
   ssh_key_pair        = "${var.ssh_key_pair}"
   github_api_token    = "${var.github_api_token}"
   github_organization = "${var.github_organization}"
@@ -72,5 +73,5 @@ module "dns" {
   stage     = "${var.stage}"
   zone_id   = "${var.zone_id}"
   ttl       = "${var.dns_ttl}"
-  records   = ["${module.instance.public_hostname}"]
+  records   = ["${module.instance.public_dns}"]
 }
