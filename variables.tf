@@ -13,11 +13,8 @@ variable "ansible_arguments" {
 }
 
 variable "ansible_envs" {
-  type = "list"
-}
-
-variable "associate_public_ip_address" {
-  default = "true"
+  type    = "list"
+  default = []
 }
 
 variable "instance_type" {

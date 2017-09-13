@@ -26,7 +26,6 @@ module "admin_tier" {
   subnets                     = ["${var.subnets}"]
   zone_id                     = "${module.tf_domain.zone_id}"
   security_groups             = ["${var.security_groups}"]
-  associate_public_ip_address = "${var.associate_public_ip_address}"
 }
 
 ```
@@ -78,7 +77,6 @@ resource "aws_ami_from_instance" "example" {
 | `security_groups`            | []             | List of Security Group IDs allowed to connect to creating instance        | Yes     |
 | `subnets`                    | []             | List of VPC Subnet IDs creating instance launched in                      | Yes     |
 | `zone_id`                    | ``             | ID of the domain zone to use - is a result of tf_domain output            | Yes     |
-| `associate_public_ip_address`| `true`         | Associate a public ip address with the creating instance. Boolean value   | No      |
 
 ## Outputs
 
