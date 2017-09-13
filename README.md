@@ -13,6 +13,7 @@ module "admin_tier" {
   source                      = "git::https://github.com/cloudposse/tf_admin.git?ref=master"
   ansible_playbook            = "${var.ansible_playbook}"
   ansible_arguments           = "${var.ansible_arguments}"
+  ansible_envs                = "${var.ansible_envs}"
   ssh_key_pair                = "${var.ssh_key_pair}"
   github_api_token            = "${var.github_api_token}"
   github_organization         = "${var.github_organization}"
@@ -71,6 +72,7 @@ resource "aws_ami_from_instance" "example" {
 | `github_team`                | ``             | GitHub team                                                               | Yes     |
 | `ansible_playbook`           | ``             | Path to the playbook - required for `tf_ansible` (e.g. `./admin_tier.yml`)| Yes     |
 | `ansible_arguments`          | []             | List of ansible arguments (e.g. `["--user=ubuntu"]`)                      | No      |
+| `ansible_envs`               | []             | List of ansible envs (e.g. `["ansible_pass=${var.ansible_password}"]`)    | Yes     |
 | `instance_type`              | `t2.micro`     | The type of the creating instance (e.g. `t2.micro`)                       | No      |
 | `vpc_id`                     | ``             | The id of the VPC that the creating instance security group belongs to    | Yes     |
 | `security_groups`            | []             | List of Security Group IDs allowed to connect to creating instance        | Yes     |

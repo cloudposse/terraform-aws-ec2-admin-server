@@ -54,12 +54,12 @@ module "instance" {
   subnets             = "${var.subnets}"
   ansible_arguments   = "${var.ansible_arguments}"
   ansible_playbook    = "${var.ansible_playbook}"
+  ansible_envs        = "${var.ansible_envs}"
   ssh_key_pair        = "${var.ssh_key_pair}"
   github_api_token    = "${var.github_api_token}"
   github_organization = "${var.github_organization}"
   github_team         = "${var.github_team}"
   instance_type       = "${var.instance_type}"
-  ansible_envs        = "${var.ansible_envs}"
 
   security_groups = [
     "${compact(concat(list(aws_security_group.default.id), var.security_groups))}",
@@ -73,5 +73,5 @@ module "dns" {
   stage     = "${var.stage}"
   zone_id   = "${var.zone_id}"
   ttl       = "${var.dns_ttl}"
-  records   = ["${module.instance.public_hostname}"]
+  records   = ["${module.instance.public_dns}"]
 }
