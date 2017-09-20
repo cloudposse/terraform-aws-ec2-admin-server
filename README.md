@@ -83,7 +83,7 @@ resource "aws_ami_from_instance" "example" {
 | Name                | Decription                                                        |
 |:--------------------|:------------------------------------------------------------------|
 | `id`                | Disambiguated ID                                                  |
-| `fqhn`              | DNS name (Fully Qualified Domain Name) of creating instance       |
+| `fqhn`              | DNS name (Fully Qualified Host Name) of creating instance         |
 | `public_ip`         | IPv4 Public IP                                                    |
 | `ssh_key_pair`      | Name of used AWS SSH key                                          |
 | `security_group_id` | ID on the new AWS Security Group associated with creating instance|
