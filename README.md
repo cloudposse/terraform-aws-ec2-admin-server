@@ -41,7 +41,7 @@ That is why `terraform-aws-route53-cluster-zone` should be implemented in `root`
 
 ### This module depends on the next modules:
 
-* [tf_label](https://github.com/cloudposse/tf_label)
+* [terraform-null-label](https://github.com/cloudposse/terraform-null-label)
 * [tf_github_authorized_keys](https://github.com/cloudposse/tf_github_authorized_keys)
 * [tf_ansible](https://github.com/cloudposse/tf_ansible)
 * [terraform-aws-route53-cluster-hostname](https://github.com/cloudposse/terraform-aws-route53-cluster-hostname)
@@ -61,9 +61,9 @@ resource "aws_ami_from_instance" "example" {
 
 |  Name                        |  Default       |  Description                                                                                       | Required|
 |:-----------------------------|:--------------:|:---------------------------------------------------------------------------------------------------|:-------:|
-| `namespace`                  | `global`       | Namespace (e.g. `cp` or `cloudposse`) - required for `tf_label` module                             | Yes     |
-| `stage`                      | `default`      | Stage (e.g. `prod`, `dev`, `staging` - required for `tf_label` module                              | Yes     |
-| `name`                       | `admin`        | Name  (e.g. `bastion` or `db`) - required for `tf_label` module                                    | Yes     |
+| `namespace`                  | `global`       | Namespace (e.g. `cp` or `cloudposse`) - required for `terraform-null-label` module                 | Yes     |
+| `stage`                      | `default`      | Stage (e.g. `prod`, `dev`, `staging` - required for `terraform-null-label` module                  | Yes     |
+| `name`                       | `admin`        | Name  (e.g. `bastion` or `db`) - required for `terraform-null-label` module                        | Yes     |
 | `ec2_ami`                    | `ami-cd0f5cb6` | By default it is an AMI provided by Amazon with Ubuntu 16.04                                       | No      |
 | `ssh_key_pair`               | ``             | SSH key pair to be provisioned on instance                                                         | Yes     |
 | `github_api_token`           | ``             | GitHub API token                                                                                   | Yes     |
