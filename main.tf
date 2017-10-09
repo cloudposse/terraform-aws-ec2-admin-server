@@ -2,7 +2,7 @@
 
 # Apply the tf_label module for this resource
 module "label" {
-  source    = "git::https://github.com/cloudposse/tf_label.git?ref=tags/0.1.0"
+  source    = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.1.0"
   namespace = "${var.namespace}"
   stage     = "${var.stage}"
   name      = "${var.name}"
@@ -46,7 +46,7 @@ resource "aws_security_group" "default" {
 
 # Using tf_instance module
 module "instance" {
-  source              = "git::https://github.com/cloudposse/tf_instance.git?ref=tags/0.3.5"
+  source              = "git::https://github.com/cloudposse/terraform-aws-ec2-instance.git?ref=tags/0.3.8"
   namespace           = "${var.namespace}"
   name                = "${var.name}"
   stage               = "${var.stage}"
@@ -67,7 +67,7 @@ module "instance" {
 }
 
 module "dns" {
-  source    = "git::https://github.com/cloudposse/tf_hostname.git?ref=tags/0.1.0"
+  source    = "git::https://github.com/cloudposse/terraform-aws-route53-cluster-hostname.git?ref=tags/0.1.0"
   namespace = "${var.namespace}"
   name      = "${var.name}"
   stage     = "${var.stage}"
