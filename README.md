@@ -42,8 +42,8 @@ That is why `terraform-aws-route53-cluster-zone` should be implemented in `root`
 ### This module depends on the next modules:
 
 * [terraform-null-label](https://github.com/cloudposse/terraform-null-label)
-* [tf_github_authorized_keys](https://github.com/cloudposse/tf_github_authorized_keys)
-* [tf_ansible](https://github.com/cloudposse/tf_ansible)
+* [terraform-aws-ubuntu-github-authorized-keys-user-data](https://github.com/cloudposse/terraform-aws-ubuntu-github-authorized-keys-user-data)
+* [terraform-null-ansible](https://github.com/cloudposse/terraform-null-ansible)
 * [terraform-aws-route53-cluster-hostname](https://github.com/cloudposse/terraform-aws-route53-cluster-hostname)
 * [terraform-aws-route53-cluster-zone](https://github.com/cloudposse/terraform-aws-route53-cluster-zone) (not directly, but `terraform-aws-route53-cluster-hostname` need child `zone_id`)
 
@@ -69,7 +69,7 @@ resource "aws_ami_from_instance" "example" {
 | `github_api_token`           | ``             | GitHub API token                                                                                   | Yes     |
 | `github_organization`        | ``             | GitHub organization name                                                                           | Yes     |
 | `github_team`                | ``             | GitHub team                                                                                        | Yes     |
-| `ansible_playbook`           | ``             | Path to the playbook - required for `tf_ansible` (e.g. `./admin_tier.yml`)                         | Yes     |
+| `ansible_playbook`           | ``             | Path to the playbook - required for `terraform-null-ansible` (e.g. `./admin_tier.yml`)             | Yes     |
 | `ansible_arguments`          | []             | List of ansible arguments (e.g. `["--user=ubuntu"]`)                                               | No      |
 | `ansible_envs`               | []             | List of ansible envs (e.g. `["ansible_pass=${var.ansible_password}"]`)                             | Yes     |
 | `instance_type`              | `t2.micro`     | The type of the creating instance (e.g. `t2.micro`)                                                | No      |
