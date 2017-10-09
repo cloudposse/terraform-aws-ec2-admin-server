@@ -24,17 +24,17 @@ module "admin_tier" {
   namespace                   = "${var.namespace}"
   stage                       = "${var.stage}"
   subnets                     = ["${var.subnets}"]
-  zone_id                     = "${module.tf_domain.zone_id}"
+  zone_id                     = "${module.terraform-aws-route53-cluster-zone.zone_id}"
   security_groups             = ["${var.security_groups}"]
 }
 
 ```
 
-### Module `tf_domain`
+### Module `terraform-aws-route53-cluster-zone`
 
-Module `terraform-aws-ec2-admin-server` requires another module to be used additionally - `tf_domain`.
+Module `terraform-aws-ec2-admin-server` requires another module to be used additionally - `terraform-aws-route53-cluster-zone`.
 
-`terraform-aws-ec2-admin-server` uses `tf_hostname` to create a DNS record for created host. `tf_hostname` module needs `zone_id` parameter as an input, and this parameter actually is an output from `tf_domain`.
+`terraform-aws-ec2-admin-server` uses `tf_hostname` to create a DNS record for created host. `tf_hostname` module needs `zone_id` parameter as an input, and this parameter actually is an output from `terraform-aws-route53-cluster-zone`.
 
 That is why `terraform-aws-route53-cluster-zone` should be implemented in `root` TF manifest when we need `terraform-aws-ec2-admin-server`.
 
