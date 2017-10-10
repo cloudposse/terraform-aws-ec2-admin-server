@@ -49,3 +49,7 @@ variable "zone_id" {
 variable "dns_ttl" {
   default = "60"
 }
+
+variable "create_default_security_group" {
+  default = true
+}
