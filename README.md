@@ -34,7 +34,7 @@ module "admin_tier" {
 
 Module `terraform-aws-ec2-admin-server` requires another module to be used additionally - `terraform-aws-route53-cluster-zone`.
 
-`terraform-aws-ec2-admin-server` uses `tf_hostname` to create a DNS record for created host. `tf_hostname` module needs `zone_id` parameter as an input, and this parameter actually is an output from `terraform-aws-route53-cluster-zone`.
+`terraform-aws-ec2-admin-server` uses `terraform-aws-route53-cluster-hostname` to create a DNS record for created host. `terraform-aws-route53-cluster-hostname` module needs `zone_id` parameter as an input, and this parameter actually is an output from `terraform-aws-route53-cluster-zone`.
 
 That is why `terraform-aws-route53-cluster-zone` should be implemented in `root` TF manifest when we need `terraform-aws-ec2-admin-server`.
 
@@ -77,22 +77,21 @@ resource "aws_ami_from_instance" "example" {
 | `security_groups`               | []             | List of Security Group IDs allowed to connect to creating instance                            | Yes     |
 | `subnets`                       | []             | List of VPC Subnet IDs creating instance launched in                                          | Yes     |
 | `zone_id`                       | ``             | ID of the domain zone to use - is a result of terraform-aws-route53-cluster-zone output       | Yes     |
-| `create_default_security_group` | `true`         | Flag for creation default Security Group with Egress traffic allowed only                     | No      |
 
 ## Outputs
 
-| Name                | Decription                                                        |
-|:--------------------|:------------------------------------------------------------------|
-| `id`                | Disambiguated ID                                                  |
-| `fqhn`              | DNS name (Fully Qualified Host Name) of creating instance         |
-| `public_ip`         | IPv4 Public IP                                                    |
-| `ssh_key_pair`      | Name of used AWS SSH key                                          |
-| `security_group_id` | ID on the new AWS Security Group associated with creating instance|
-| `role`              | Name of AWS IAM Role associated with creating instance            |
+| Name                 | Decription                                                           |
+|:---------------------|:---------------------------------------------------------------------|
+| `id`                 | Disambiguated ID                                                     |
+| `fqhn`               | DNS name (Fully Qualified Host Name) of creating instance            |
+| `public_ip`          | IPv4 Public IP                                                       |
+| `ssh_key_pair`       | Name of used AWS SSH key                                             |
+| `security_group_ids` | List of IDs of AWS Security Groups associated with creating instance |
+| `role`               | Name of AWS IAM Role associated with creating instance               |
 
 
 ## References
-* Thanks to https://github.com/cloudposse/tf_bastion for the inspiration
+* Thanks to https://github.com/cloudposse/terraform-aws-ec2-bastion-server for the inspiration
 
 
 

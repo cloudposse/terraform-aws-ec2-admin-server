@@ -3,7 +3,7 @@
 resource "aws_security_group_rule" "ssh" {
   from_port         = 22
   protocol          = "-1"
-  security_group_id = "${module.instance.security_group.id}"
+  security_group_id = "${module.instance.security_group_ids}"
   to_port           = 22
   type              = "ingress"
   cidr_blocks       = ["0.0.0.0/0"]
@@ -26,7 +26,7 @@ module "instance" {
   github_organization           = "${var.github_organization}"
   github_team                   = "${var.github_team}"
   instance_type                 = "${var.instance_type}"
-  create_default_security_group = "${var.create_default_security_group}"
+  create_default_security_group = true
 
   security_groups = [
     "${compact(concat(list(aws_security_group.default.id), var.security_groups))}",

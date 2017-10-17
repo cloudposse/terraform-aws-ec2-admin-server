@@ -24,6 +24,7 @@ variable "instance_type" {
 variable "vpc_id" {}
 
 variable "security_groups" {
+  type    = "list"
   default = []
 }
 
@@ -48,8 +49,4 @@ variable "zone_id" {
 
 variable "dns_ttl" {
   default = "60"
-}
-
-variable "create_default_security_group" {
-  default = true
 }
