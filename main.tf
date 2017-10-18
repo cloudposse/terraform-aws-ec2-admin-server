@@ -26,7 +26,6 @@ resource "aws_security_group_rule" "ssh" {
   cidr_blocks       = "${var.allow_cidr_blocks}"
 }
 
-
 # Use terraform-aws-ec2-instance module
 module "instance" {
   source                        = "git::https://github.com/cloudposse/terraform-aws-ec2-instance.git?ref=tags/0.3.11"
