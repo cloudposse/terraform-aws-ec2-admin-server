@@ -12,7 +12,7 @@ resource "aws_security_group_rule" "ssh" {
 
 # Using terraform-aws-ec2-instance module
 module "instance" {
-  source                        = "git::https://github.com/cloudposse/terraform-aws-ec2-instance.git?ref=tags/0.3.8"
+  source                        = "git::https://github.com/cloudposse/terraform-aws-ec2-instance.git?ref=tags/0.3.11"
   namespace                     = "${var.namespace}"
   name                          = "${var.name}"
   stage                         = "${var.stage}"
