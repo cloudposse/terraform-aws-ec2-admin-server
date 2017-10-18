@@ -12,7 +12,7 @@ Include this repository as a module in your existing terraform code:
 module "admin_tier" {
   source                      = "git::https://github.com/cloudposse/terraform-aws-ec2-admin-server.git?ref=master"
   ansible_playbook            = "${var.ansible_playbook}"
-  ansible_arguments           = "${var.ansible_arguments}"
+  ansible_arguments           = ["${var.ansible_arguments}"]
   ansible_envs                = "${var.ansible_envs}"
   ssh_key_pair                = "${var.ssh_key_pair}"
   github_api_token            = "${var.github_api_token}"
