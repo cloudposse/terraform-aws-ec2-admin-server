@@ -32,7 +32,7 @@ resource "aws_security_group_rule" "egress" {
   security_group_id = "${aws_security_group.default.id}"
   to_port           = 0
   type              = "egress"
-  cidr_blocks       = "0.0.0.0/0"
+  cidr_blocks       = ["0.0.0.0/0"]
 }
 
 # Use terraform-aws-ec2-instance module
