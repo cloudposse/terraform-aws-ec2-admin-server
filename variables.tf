@@ -38,6 +38,20 @@ variable "stage" {}
 
 variable "name" {}
 
+variable "delimiter" {
+  default = "-"
+}
+
+variable "attributes" {
+  type    = "list"
+  default = []
+}
+
+variable "tags" {
+  type    = "map"
+  default = {}
+}
+
 variable "ec2_ami" {
   default     = "ami-cd0f5cb6"
   description = "Ubuntu Server 16.04 LTS (HVM)"

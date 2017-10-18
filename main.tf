@@ -1,16 +1,33 @@
-# Using tf_admin module
+# Define label for SG and SG
+
+module "label" {
+  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.2.2"
+  namespace  = "${var.namespace}"
+  stage      = "${var.stage}"
+  name       = "${var.name}"
+  attributes = "${var.attributes}"
+  delimiter  = "${var.delimiter}"
+  tags       = "${var.tags}"
+}
+
+resource "aws_security_group" "default" {
+  name        = "${module.label.id}"
+  description = "Allow SSH inbound traffic"
+  vpc_id      = "${var.vpc_id}"
+  tags        = "${module.label.tags}"
+}
 
 resource "aws_security_group_rule" "ssh" {
   from_port         = 22
   protocol          = "-1"
-  security_group_id = "${module.instance.security_group_ids}"
+  security_group_id = "${aws_security_group.default.id}"
   to_port           = 22
   type              = "ingress"
   cidr_blocks       = "${var.allow_cidr_blocks}"
 }
 
 
-# Using terraform-aws-ec2-instance module
+# Use terraform-aws-ec2-instance module
 module "instance" {
   source                        = "git::https://github.com/cloudposse/terraform-aws-ec2-instance.git?ref=tags/0.3.11"
   namespace                     = "${var.namespace}"
@@ -26,10 +43,10 @@ module "instance" {
   github_organization           = "${var.github_organization}"
   github_team                   = "${var.github_team}"
   instance_type                 = "${var.instance_type}"
-  create_default_security_group = true
+  create_default_security_group = false
 
   security_groups = [
-    "${var.security_groups}",
+    "${compact(concat(list(aws_security_group.default.id), var.security_groups))}",
   ]
 }
 
