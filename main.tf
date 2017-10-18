@@ -6,7 +6,7 @@ resource "aws_security_group_rule" "ssh" {
   security_group_id = "${module.instance.security_group_ids}"
   to_port           = 22
   type              = "ingress"
-  cidr_blocks       = "{var.allow_cidr_blocks}"
+  cidr_blocks       = "${var.allow_cidr_blocks}"
 }
 
 
