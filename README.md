@@ -76,6 +76,7 @@ resource "aws_ami_from_instance" "example" {
 | `vpc_id`                        | ``             | The id of the VPC that the creating instance security group belongs to                        | Yes     |
 | `security_groups`               | []             | List of Security Group IDs allowed to connect to creating instance                            | Yes     |
 | `subnets`                       | []             | List of VPC Subnet IDs creating instance launched in                                          | Yes     |
+| `allow_cidr_blocks`             | ["0.0.0.0/0"]  | List of CIDR blocks                                                                           | No      |
 | `zone_id`                       | ``             | ID of the domain zone to use - is a result of terraform-aws-route53-cluster-zone output       | Yes     |
 
 ## Outputs

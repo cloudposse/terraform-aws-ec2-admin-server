@@ -50,3 +50,8 @@ variable "zone_id" {
 variable "dns_ttl" {
   default = "60"
 }
+
+variable "allow_cidr_blocks" {
+  type    = "list"
+  default = ["0.0.0.0/0"]
+}
