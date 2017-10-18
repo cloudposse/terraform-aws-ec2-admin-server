@@ -29,7 +29,7 @@ module "instance" {
   create_default_security_group = true
 
   security_groups = [
-    "${compact(concat(list(aws_security_group.default.id), var.security_groups))}",
+    "${var.security_groups}",
   ]
 }
 
