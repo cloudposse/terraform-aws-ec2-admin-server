@@ -26,6 +26,15 @@ resource "aws_security_group_rule" "ssh" {
   cidr_blocks       = "${var.allow_cidr_blocks}"
 }
 
+resource "aws_security_group_rule" "egress" {
+  from_port         = 0
+  protocol          = "-1"
+  security_group_id = "${aws_security_group.default.id}"
+  to_port           = 0
+  type              = "egress"
+  cidr_blocks       = "0.0.0.0/0"
+}
+
 # Use terraform-aws-ec2-instance module
 module "instance" {
   source                        = "git::https://github.com/cloudposse/terraform-aws-ec2-instance.git?ref=tags/0.3.11"
