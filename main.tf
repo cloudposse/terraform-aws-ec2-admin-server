@@ -5,7 +5,7 @@ module "label" {
   namespace  = "${var.namespace}"
   stage      = "${var.stage}"
   name       = "${var.name}"
-  attributes = "${var.attributes}"
+  attributes = "${compact(concat(var.attributes, list("ssh")))}"
   delimiter  = "${var.delimiter}"
   tags       = "${var.tags}"
 }
