@@ -73,11 +73,11 @@ resource "aws_ami_from_instance" "example" {
 | `ansible_playbook`              | ``             | Path to the playbook - required for `terraform-null-ansible` (e.g. `./admin_tier.yml`)        | Yes     |
 | `ansible_arguments`             | []             | List of ansible arguments (e.g. `["--user=ubuntu"]`)                                          | No      |
 | `ansible_envs`                  | []             | List of ansible envs (e.g. `["ansible_pass=${var.ansible_password}"]`)                        | Yes     |
-| `instance_type`                 | `t2.micro`     | The type of the creating instance (e.g. `t2.micro`)                                           | No      |
-| `vpc_id`                        | ``             | The id of the VPC that the creating instance security group belongs to                        | Yes     |
-| `security_groups`               | []             | List of Security Group IDs allowed to connect to creating instance                            | Yes     |
-| `subnets`                       | []             | List of VPC Subnet IDs creating instance launched in                                          | Yes     |
-| `allow_cidr_blocks`             | ["0.0.0.0/0"]  | List of CIDR blocks SSH access available from                                                 | No      |
+| `instance_type`                 | `t2.micro`     | The type of instance that will be created (e.g. `t2.micro`)                                   | No      |
+| `vpc_id`                        | ``             | The ID of the VPC where the instance will be created                                          | Yes     |
+| `security_groups`               | []             | List of Security Group IDs permitted to connect to this instance                              | Yes     |
+| `subnets`                       | []             | List of VPC Subnet IDs where the instance may be launched                                     | Yes     |
+| `allow_cidr_blocks`             | ["0.0.0.0/0"]  | List of CIDR blocks to permit SSH access                                                      | No      |
 | `zone_id`                       | ``             | ID of the domain zone to use - is a result of terraform-aws-route53-cluster-zone output       | Yes     |
 
 ## Outputs
