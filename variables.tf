@@ -24,6 +24,7 @@ variable "instance_type" {
 variable "vpc_id" {}
 
 variable "security_groups" {
+  type    = "list"
   default = []
 }
 
@@ -37,6 +38,20 @@ variable "stage" {}
 
 variable "name" {}
 
+variable "delimiter" {
+  default = "-"
+}
+
+variable "attributes" {
+  type    = "list"
+  default = []
+}
+
+variable "tags" {
+  type    = "map"
+  default = {}
+}
+
 variable "ec2_ami" {
   default     = "ami-cd0f5cb6"
   description = "Ubuntu Server 16.04 LTS (HVM)"
@@ -48,4 +63,9 @@ variable "zone_id" {
 
 variable "dns_ttl" {
   default = "60"
+}
+
+variable "allow_cidr_blocks" {
+  type    = "list"
+  default = ["0.0.0.0/0"]
 }

@@ -10,14 +10,14 @@ output "ssh_key_pair" {
   value = "${var.ssh_key_pair}"
 }
 
-output "security_group_id" {
-  value = "${aws_security_group.default.id}"
-}
-
 output "role" {
   value = "${module.instance.role}"
 }
 
 output "fqhn" {
   value = "${module.dns.hostname}"
+}
+
+output "security_group_ids" {
+  value = "module.instance.security_group_ids"
 }
