@@ -37,7 +37,7 @@ resource "aws_security_group_rule" "egress" {
 
 # Use terraform-aws-ec2-instance module
 module "instance" {
-  source                        = "git::https://github.com/cloudposse/terraform-aws-ec2-instance.git?ref=tags/0.3.11"
+  source                        = "git::https://github.com/cloudposse/terraform-aws-ec2-instance.git?ref=tags/0.4.0"
   namespace                     = "${var.namespace}"
   name                          = "${var.name}"
   stage                         = "${var.stage}"
