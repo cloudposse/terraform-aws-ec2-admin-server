@@ -11,9 +11,6 @@ Include this repository as a module in your existing terraform code:
 ```terraform
 module "admin_tier" {
   source                      = "git::https://github.com/cloudposse/terraform-aws-ec2-admin-server.git?ref=master"
-  ansible_playbook            = "${var.ansible_playbook}"
-  ansible_arguments           = ["${var.ansible_arguments}"]
-  ansible_envs                = "${var.ansible_envs}"
   ssh_key_pair                = "${var.ssh_key_pair}"
   github_api_token            = "${var.github_api_token}"
   github_organization         = "${var.github_organization}"
@@ -44,7 +41,6 @@ That is why `terraform-aws-route53-cluster-zone` should be implemented in `root`
 
 * [terraform-null-label](https://github.com/cloudposse/terraform-null-label)
 * [terraform-aws-ubuntu-github-authorized-keys-user-data](https://github.com/cloudposse/terraform-aws-ubuntu-github-authorized-keys-user-data)
-* [terraform-null-ansible](https://github.com/cloudposse/terraform-null-ansible)
 * [terraform-aws-route53-cluster-hostname](https://github.com/cloudposse/terraform-aws-route53-cluster-hostname)
 * [terraform-aws-route53-cluster-zone](https://github.com/cloudposse/terraform-aws-route53-cluster-zone) (not directly, but `terraform-aws-route53-cluster-hostname` need child `zone_id`)
 
@@ -70,9 +66,6 @@ resource "aws_ami_from_instance" "example" {
 | `github_api_token`              | ``             | GitHub API token                                                                              | Yes     |
 | `github_organization`           | ``             | GitHub organization name                                                                      | Yes     |
 | `github_team`                   | ``             | GitHub team                                                                                   | Yes     |
-| `ansible_playbook`              | ``             | Path to the playbook - required for `terraform-null-ansible` (e.g. `./admin_tier.yml`)        | Yes     |
-| `ansible_arguments`             | []             | List of ansible arguments (e.g. `["--user=ubuntu"]`)                                          | No      |
-| `ansible_envs`                  | []             | List of ansible envs (e.g. `["ansible_pass=${var.ansible_password}"]`)                        | Yes     |
 | `instance_type`                 | `t2.micro`     | The type of instance that will be created (e.g. `t2.micro`)                                   | No      |
 | `vpc_id`                        | ``             | The ID of the VPC where the instance will be created                                          | Yes     |
 | `security_groups`               | []             | List of Security Group IDs permitted to connect to this instance                              | Yes     |
