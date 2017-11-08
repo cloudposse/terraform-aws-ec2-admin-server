@@ -37,7 +37,7 @@ resource "aws_security_group_rule" "egress" {
 
 # Use terraform-aws-ec2-instance module
 module "instance" {
-  source                        = "git::https://github.com/cloudposse/terraform-aws-ec2-instance.git?ref=tags/0.3.11"
+  source                        = "git::https://github.com/cloudposse/terraform-aws-ec2-instance.git?ref=tags/0.4.0"
   namespace                     = "${var.namespace}"
   name                          = "${var.name}"
   stage                         = "${var.stage}"
@@ -46,9 +46,6 @@ module "instance" {
   tags                          = "${var.tags}"
   vpc_id                        = "${var.vpc_id}"
   subnets                       = "${var.subnets}"
-  ansible_arguments             = "${var.ansible_arguments}"
-  ansible_playbook              = "${var.ansible_playbook}"
-  ansible_envs                  = "${var.ansible_envs}"
   ssh_key_pair                  = "${var.ssh_key_pair}"
   github_api_token              = "${var.github_api_token}"
   github_organization           = "${var.github_organization}"

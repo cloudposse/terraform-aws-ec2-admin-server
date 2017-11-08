@@ -6,17 +6,6 @@ variable "github_organization" {}
 
 variable "github_team" {}
 
-variable "ansible_playbook" {}
-
-variable "ansible_arguments" {
-  type = "list"
-}
-
-variable "ansible_envs" {
-  type    = "list"
-  default = []
-}
-
 variable "instance_type" {
   default = "t2.micro"
 }
