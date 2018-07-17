@@ -1,0 +1,116 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this project
+name: terraform-aws-ec2-admin-server
+
+# Logo for this project
+#logo: docs/logo.png
+
+# License of this project
+license: "APACHE2"
+
+# Canonical GitHub repo
+github_repo: cloudposse/terraform-aws-ec2-admin-server
+
+# Badges to display
+badges:
+  - name: "Build Status"
+    image: "https://travis-ci.org/cloudposse/terraform-aws-ec2-admin-server.svg?branch=master"
+    url: "https://travis-ci.org/cloudposse/terraform-aws-ec2-admin-server"
+  - name: "Latest Release"
+    image: "https://img.shields.io/github/release/cloudposse/terraform-aws-ec2-admin-server.svg"
+    url: "https://github.com/cloudposse/terraform-aws-ec2-admin-server/releases/latest"
+  - name: "Slack Community"
+    image: "https://slack.cloudposse.com/badge.svg"
+    url: "https://slack.cloudposse.com"
+
+related:
+  - name: "bastion"
+    description: "🔒Secure Bastion implemented as Docker Container running Alpine Linux with Google Authenticator & DUO MFA support"
+    url: "https://github.com/cloudposse/bastion"
+  - name: "terraform-aws-ec2-bastion-server"
+    description: "Terraform Module to define a generic Bastion host with parameterized user_data"
+    url: "https://github.com/cloudposse/terraform-aws-ec2-bastion-server"
+  - name: "terraform-aws-ec2-instance"
+    description: "Terraform Module for providing a general EC2 instance provisioned by Ansible"
+    url: "https://github.com/cloudposse/terraform-aws-ec2-instance"
+
+# Short description of this project
+description: |-
+  Terraform Module for providing a server capable of running admin tasks. Use `terraform-aws-ec2-admin-server` to create and manage an admin instance.
+
+# How to use this project
+usage: |-
+  Note: add `${var.ssh_key_pair}` private key to the `ssh agent`.
+
+  Include this repository as a module in your existing terraform code:
+
+  ```terraform
+  module "admin_tier" {
+    source                      = "git::https://github.com/cloudposse/terraform-aws-ec2-admin-server.git?ref=master"
+    ssh_key_pair                = "${var.ssh_key_pair}"
+    github_api_token            = "${var.github_api_token}"
+    github_organization         = "${var.github_organization}"
+    github_team                 = "${var.github_team}"
+    instance_type               = "${var.instance_type}"
+    vpc_id                      = "${var.vpc_id}"
+    name                        = "admin"
+    namespace                   = "${var.namespace}"
+    stage                       = "${var.stage}"
+    subnets                     = ["${var.subnets}"]
+    zone_id                     = "${module.terraform-aws-route53-cluster-zone.zone_id}"
+    security_groups             = ["${var.security_groups}"]
+    allow_cidr_blocks           = ["${var.allow_cidr_blocks}"]
+  }
+
+  ```
+
+  ### Module `terraform-aws-route53-cluster-zone`
+
+  Module `terraform-aws-ec2-admin-server` requires another module to be used additionally - `terraform-aws-route53-cluster-zone`.
+
+  `terraform-aws-ec2-admin-server` uses `terraform-aws-route53-cluster-hostname` to create a DNS record for created host. `terraform-aws-route53-cluster-hostname` module needs `zone_id` parameter as an input, and this parameter actually is an output from `terraform-aws-route53-cluster-zone`.
+
+  That is why `terraform-aws-route53-cluster-zone` should be implemented in `root` TF manifest when we need `terraform-aws-ec2-admin-server`.
+
+
+  ### This module depends on the next modules:
+
+  * [terraform-null-label](https://github.com/cloudposse/terraform-null-label)
+  * [terraform-aws-ubuntu-github-authorized-keys-user-data](https://github.com/cloudposse/terraform-aws-ubuntu-github-authorized-keys-user-data)
+  * [terraform-aws-route53-cluster-hostname](https://github.com/cloudposse/terraform-aws-route53-cluster-hostname)
+  * [terraform-aws-route53-cluster-zone](https://github.com/cloudposse/terraform-aws-route53-cluster-zone) (not directly, but `terraform-aws-route53-cluster-hostname` need child `zone_id`)
+
+  It is necessary to run `terraform get` to download those modules.
+
+  Now reference the label when creating an instance (for example):
+  ```terraform
+  resource "aws_ami_from_instance" "example" {
+    name               = "terraform-example"
+    source_instance_id = "${module.admin_tier.id}"
+  }
+  ```
+
+references:
+  - name: "terraform-aws-ec2-bastion-server"
+    description: "Thanks for the inspiration"
+    url: "https://github.com/cloudposse/terraform-aws-ec2-bastion-server"
+
+include:
+  - "docs/targets.md"
+  - "docs/terraform.md"
+
+# Contributors to this project
+contributors:
+  - name: "Sergey Vasilyev"
+    github: "s2504s"
+  - name: "Valeriy"
+    github: "drama17"
+  - name: "Vladimir"
+    github: "SweetOps"
+  - name: "Konstantin B"
+    github: "comeanother"
