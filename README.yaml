@@ -11,12 +11,19 @@ name: terraform-aws-ec2-admin-server
 tags:
   - aws
   - terraform
+  - terraform-modules
   - platform
   - ec2
+  - admin-server
+  - instance
+  - security
+  - ansible
+  - bastion
+  - ssh
 
 # Categories of this project
 categories:
-  - terraform-platform
+  - terraform-modules/platform
 
 # Logo for this project
 #logo: docs/logo.png
