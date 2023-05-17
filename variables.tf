@@ -24,13 +24,13 @@ variable "vpc_id" {
 }
 
 variable "security_groups" {
-  type        = "list"
+  type        = list(string)
   default     = []
   description = "List of Security Group IDs permitted to connect to this instance"
 }
 
 variable "subnets" {
-  type        = "list"
+  type        = list(string)
   description = "List of VPC Subnet IDs where the instance may be launched"
 }
 
@@ -47,19 +47,19 @@ variable "stage" {
 }
 
 variable "delimiter" {
-  type        = "string"
+  type        = string
   default     = "-"
   description = "Delimiter to be used between `name`, `namespace`, `stage`, etc."
 }
 
 variable "attributes" {
-  type        = "list"
+  type        = list(string)
   default     = []
   description = "Additional attributes (e.g. `policy` or `role`)"
 }
 
 variable "tags" {
-  type        = "map"
+  type        = map(string)
   default     = {}
   description = "Additional tags (e.g. `map('BusinessUnit','XYZ')`)"
 }
@@ -80,7 +80,7 @@ variable "dns_ttl" {
 }
 
 variable "allow_cidr_blocks" {
-  type        = "list"
+  type        = list(string)
   default     = ["0.0.0.0/0"]
   description = "List of CIDR blocks to permit SSH access"
 }
