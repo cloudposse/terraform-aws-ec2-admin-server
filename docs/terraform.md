@@ -14,7 +14,7 @@ No requirements.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_dns"></a> [dns](#module\_dns) | git::https://github.com/cloudposse/terraform-aws-route53-cluster-hostname.git | tags/0.1.1 |
-| <a name="module_instance"></a> [instance](#module\_instance) | git::https://github.com/cloudposse/terraform-aws-ec2-instance.git | tags/0.4.0 |
+| <a name="module_instance"></a> [instance](#module\_instance) | git::https://github.com/cloudposse/terraform-aws-ec2-instance.git | 1.2.1 |
 | <a name="module_label"></a> [label](#module\_label) | git::https://github.com/cloudposse/terraform-null-label.git | tags/0.2.2 |
 
 ## Resources
