@@ -59,7 +59,7 @@ module "instance" {
 }
 
 module "dns" {
-  source    = "git::https://github.com/cloudposse/terraform-aws-route53-cluster-hostname.git?ref=tags/0.1.1"
+  source    = "git::https://github.com/cloudposse/terraform-aws-route53-cluster-hostname.git?ref=0.13.0"
   namespace = var.namespace
   name      = var.name
   stage     = var.stage
