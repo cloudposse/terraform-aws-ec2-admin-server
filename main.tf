@@ -1,7 +1,7 @@
 # Define label for SG and SG itself
 
 module "label" {
-  source     = "cloudposse/label/null"
+  source  = "cloudposse/label/null"
   version = "0.25.0"
 
   namespace  = var.namespace
@@ -39,7 +39,7 @@ resource "aws_security_group_rule" "egress" {
 
 # Use terraform-aws-ec2-instance module
 module "instance" {
-  source                        = "cloudposse/ec2-instance/aws"
+  source  = "cloudposse/ec2-instance/aws"
   version = "1.2.1"
 
   namespace                     = var.namespace
@@ -63,7 +63,7 @@ module "instance" {
 }
 
 module "dns" {
-  source    = "cloudposse/route53-cluster-hostname/aws"
+  source  = "cloudposse/route53-cluster-hostname/aws"
   version = "0.13.0"
 
   namespace = var.namespace
