@@ -7,15 +7,15 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.39.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_dns"></a> [dns](#module\_dns) | git::https://github.com/cloudposse/terraform-aws-route53-cluster-hostname.git | tags/0.1.1 |
-| <a name="module_instance"></a> [instance](#module\_instance) | git::https://github.com/cloudposse/terraform-aws-ec2-instance.git | tags/0.4.0 |
-| <a name="module_label"></a> [label](#module\_label) | git::https://github.com/cloudposse/terraform-null-label.git | tags/0.2.2 |
+| <a name="module_dns"></a> [dns](#module\_dns) | cloudposse/route53-cluster-hostname/aws | 0.13.0 |
+| <a name="module_instance"></a> [instance](#module\_instance) | cloudposse/ec2-instance/aws | 1.2.1 |
+| <a name="module_label"></a> [label](#module\_label) | cloudposse/label/null | 0.25.0 |
 
 ## Resources
 
@@ -38,6 +38,7 @@ No requirements.
 | <a name="input_github_organization"></a> [github\_organization](#input\_github\_organization) | GitHub organization name | `any` | n/a | yes |
 | <a name="input_github_team"></a> [github\_team](#input\_github\_team) | GitHub team | `any` | n/a | yes |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | The type of instance that will be created (e.g. `t2.micro`) | `string` | `"t2.micro"` | no |
+| <a name="input_name"></a> [name](#input\_name) | The Name of the application or solution  (e.g. `bastion` or `portal`) | `any` | n/a | yes |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | Namespace (e.g. `cp` or `cloudposse`) | `any` | n/a | yes |
 | <a name="input_security_groups"></a> [security\_groups](#input\_security\_groups) | List of Security Group IDs permitted to connect to this instance | `list(string)` | `[]` | no |
 | <a name="input_ssh_key_pair"></a> [ssh\_key\_pair](#input\_ssh\_key\_pair) | SSH key pair to be provisioned on instance | `any` | n/a | yes |

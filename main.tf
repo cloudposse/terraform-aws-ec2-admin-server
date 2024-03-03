@@ -1,7 +1,9 @@
 # Define label for SG and SG itself
 
 module "label" {
-  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.2.2"
+  source     = "cloudposse/label/null"
+  version = "0.25.0"
+
   namespace  = var.namespace
   stage      = var.stage
   name       = var.name
@@ -37,7 +39,9 @@ resource "aws_security_group_rule" "egress" {
 
 # Use terraform-aws-ec2-instance module
 module "instance" {
-  source                        = "git::https://github.com/cloudposse/terraform-aws-ec2-instance.git?ref=tags/0.4.0"
+  source                        = "cloudposse/ec2-instance/aws"
+  version = "1.2.1"
+
   namespace                     = var.namespace
   name                          = var.name
   stage                         = var.stage
@@ -59,7 +63,9 @@ module "instance" {
 }
 
 module "dns" {
-  source    = "git::https://github.com/cloudposse/terraform-aws-route53-cluster-hostname.git?ref=tags/0.1.1"
+  source    = "cloudposse/route53-cluster-hostname/aws"
+  version = "0.13.0"
+
   namespace = var.namespace
   name      = var.name
   stage     = var.stage
