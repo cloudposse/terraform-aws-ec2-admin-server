@@ -34,7 +34,7 @@ variable "subnets" {
   description = "List of VPC Subnet IDs where the instance may be launched"
 }
 
-vvariable "name" {
+variable "name" {
   description = "The Name of the application or solution  (e.g. `bastion` or `portal`)"
 }
 
