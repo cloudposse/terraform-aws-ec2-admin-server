@@ -1,0 +1,7 @@
+# Upstream changes from _extends are only recognized when modifications are made to this file in the default branch.
+_extends: .github
+repository:
+  name: terraform-aws-ec2-admin-server
+  description: Terraform Module for providing a EC2 instance capable of running admin tasks and provisioned by Ansible
+  homepage: https://cloudposse.com/accelerate
+  topics: aws, ec2, security, bastion, ssh, instance, ansible, terraform
