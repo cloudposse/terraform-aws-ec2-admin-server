@@ -18,7 +18,7 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_dns"></a> [dns](#module\_dns) | cloudposse/route53-cluster-hostname/aws | 0.13.0 |
-| <a name="module_instance"></a> [instance](#module\_instance) | cloudposse/ec2-instance/aws | 1.2.1 |
+| <a name="module_instance"></a> [instance](#module\_instance) | cloudposse/ec2-instance/aws | 1.2.2 |
 | <a name="module_label"></a> [label](#module\_label) | cloudposse/label/null | 0.25.0 |
 
 ## Resources
