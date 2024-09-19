@@ -157,7 +157,7 @@ Available targets:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_allow_cidr_blocks"></a> [allow\_cidr\_blocks](#input\_allow\_cidr\_blocks) | List of CIDR blocks to permit SSH access | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
+| <a name="input_allow_cidr_blocks"></a> [allow\_cidr\_blocks](#input\_allow\_cidr\_blocks) | List of CIDR blocks to permit SSH access | `list(string)` | <pre>[<br/>  "0.0.0.0/0"<br/>]</pre> | no |
 | <a name="input_attributes"></a> [attributes](#input\_attributes) | Additional attributes (e.g. `policy` or `role`) | `list(string)` | `[]` | no |
 | <a name="input_delimiter"></a> [delimiter](#input\_delimiter) | Delimiter to be used between `name`, `namespace`, `stage`, etc. | `string` | `"-"` | no |
 | <a name="input_dns_ttl"></a> [dns\_ttl](#input\_dns\_ttl) | The time for which a DNS resolver caches a response | `string` | `"60"` | no |
