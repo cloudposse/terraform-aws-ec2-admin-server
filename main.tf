@@ -40,7 +40,7 @@ resource "aws_security_group_rule" "egress" {
 # Use terraform-aws-ec2-instance module
 module "instance" {
   source  = "cloudposse/ec2-instance/aws"
-  version = "1.2.1"
+  version = "1.6.1"
 
   namespace                     = var.namespace
   name                          = var.name
